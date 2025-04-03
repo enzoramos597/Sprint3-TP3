@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Listar todos los Super Heroes</h1>
+
+    <table>
+        <table border="1">
+            <tr>
+                <th>Nombre</th>
+                <th>Nombre Real</th>
+                <th>Edad</th>
+                <th>Planeta de Origen</th>
+                <th>Debilidad</th>
+                <th>Poderes</th>
+                <th>Aliados</th>
+                <th>Enemigos</th>
+                <th>Creador</th>
+            </tr>
+            <% superheroesFormateados.forEach( (heroe) => { %>
+                <tr>
+                    <td> <%= heroe.Nombre %></td>
+                    <td> <%= heroe["Nombre Real"] %></td>
+                    <td> <%= heroe.Edad %></td>
+                    <td> <%= heroe["Planeta de Origen"] %></td>
+                    <td> <%= heroe.Debilidad %></td>
+                    <td> <%= heroe.Poderes %></td>
+                    <td> <%= heroe.Aliados %></td>
+                    <td> <%= heroe.Enemigos %></td>
+                    <td> <%= heroe["Creador"] %></td>
+                    <td> <button>Editar</button></td>
+                </tr>
+            <% }) %>
+           
+        </table>
+    </table>
+</body>
+</html>
