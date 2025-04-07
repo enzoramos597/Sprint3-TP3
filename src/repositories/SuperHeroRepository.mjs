@@ -46,6 +46,45 @@ class SuperHeroRepository extends IRepository {
         return guardarSuperHeroe;
     };
     
+    async updateRepository (nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador){
+        //const {nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador, createdAt} = updateSP;
+        //console.log('Traigo SP en Repository', updateSP);
+        const updateSuperHeroe = new superHero({
+            nombreSuperHeroe, 
+            nombreReal, 
+            edad, 
+            planetaOrigen, 
+            debilidad, 
+            poderes, 
+            aliados, 
+            enemigos, 
+            creador, 
+            createdAt
+        });
+        console.log('Ver Modificar Heroe', updateSuperHeroe);
+        const modificarSuperHeroe = await updateSuperHeroe.updateOne();
+        console.log('Ver Modificar Heroe2', updateSuperHeroe);
+        return modificarSuperHeroe;
+    };
+    
+    async updateRepository1SuperHereo(id, datosActualizados) {
+        const updateSuperHeroe = await superHero.findByIdAndUpdate(
+          id,
+          datosActualizados,
+          { new: true }
+        );
+        console.log('Ver Update Super Heroe', updateSuperHeroe);
+        return updateSuperHeroe;
+      }
+
+    async updateRepositorySuperHereo(id, nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador) {
+        console.log('Traer el superheroe Repository', nombreSuperHeroe);
+        const updateSuperHeroe = await superHero.findByIdAndUpdate(id, nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador, {new:true});
+        console('Ver Update Super Heroe', updateSuperHeroe);
+        if (!updateSuperHeroe) return res.status(404).json({ message: "Superhero no found" });
+        return updateSuperHeroe;   
+    }
+
     async modificarSuperHeroeporEdad (id, atributo, valor){
         return await superHero.updateOne(
             { _id: id},

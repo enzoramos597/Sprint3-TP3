@@ -11,6 +11,9 @@ export async function obtenerTodosLosSuperheroes() {
     return await SuperHeroRepository.obtenerTodos();
 } 
 
+export async function updateService(id) {
+    return await SuperHeroRepository.updateRepository(id);
+}
 export async function buscarSuperheroesPorAtributo(atributo, valor) {
     return await SuperHeroRepository.buscarPorAtributo(atributo, valor)
 }
@@ -25,6 +28,10 @@ export async function agregarNuevoSuperHeroe(agregarNuevoSP) {
 
 export async function modificarSuperHeroeporEdad(id, atributo, valor) {
     return await SuperHeroRepository.modificarSuperHeroeporEdad(id, atributo, valor);
+}
+
+export async function modificarSuperHeroeService(id, datosActualizados){
+    return await SuperHeroRepository.updateRepository1SuperHereo(id, datosActualizados);
 }
 
 export async function eliminarSuperHereoPorId(id) {

@@ -9,7 +9,10 @@ import {
     obtenerSuperheroesMayoresDe30Controller, 
     agregarSuperHeroesController, modificarSuperHeroesporIdController,
     eliminarSuperheroePorIdController,
-    eliminarSuperheroePorNombreController
+    eliminarSuperheroePorNombreController,
+    modificarSuperHeroesController,
+    modificar1SuperHeroesController,
+    update
 } from '../controllers/superheroesController.mjs';
 
 //Express-Validator
@@ -19,7 +22,11 @@ import { validationHandler } from '../validaciones/errorMiddleware.js'
 
 const router = express.Router();
 
-router.get('/heroes', obtenerTodosLosSuperheroesController)
+router.get('/heroes', obtenerTodosLosSuperheroesController);
+router.get('/heroes/:id', obtenerSuperheroePorIdController);
+router.put('/heroes/modificar/:id', modificar1SuperHeroesController);
+router.post('/heroes/nuevo/agregarheroes', agregarSuperHeroesController);
+router.put('/heroes/modificar-id/:id', modificarSuperHeroesController);
 /*router.get('/heroes', obtenerTodosLosSuperheroesController);
 router.get('/heroes/buscar-id/:id', obtenerSuperheroePorIdController);
 router.get('/heroes/buscar/:atributo/:valor', buscarSuperheroesPorAtributoController);
@@ -27,7 +34,7 @@ router.get('/heroes/mayores-30', obtenerSuperheroesMayoresDe30Controller);
 
 //Sprint 3 - TP1
 router.get('/heroes', obtenerTodosLosSuperheroesController);
-//router.post('/heroes/nuevo/agregarheroes', agregarSuperHeroesController);
+router.post('/heroes/nuevo/agregarheroes', agregarSuperHeroesController);
 router.put('/heroes/actualizar/:id/:atributo/:valor', modificarSuperHeroesporIdController );
 router.delete('/heroes/eliminar/id/:id', eliminarSuperheroePorIdController);
 router.delete('/heroes/eliminarpornombre/:nombre', eliminarSuperheroePorNombreController);*/
