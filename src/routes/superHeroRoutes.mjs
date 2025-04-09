@@ -5,14 +5,15 @@ import express from 'express';
 import {
     obtenerSuperheroePorIdController,
     obtenerTodosLosSuperheroesController,
-    buscarSuperheroesPorAtributoController,
-    obtenerSuperheroesMayoresDe30Controller, 
-    agregarSuperHeroesController, modificarSuperHeroesporIdController,
-    eliminarSuperheroePorIdController,
-    eliminarSuperheroePorNombreController,
+   // buscarSuperheroesPorAtributoController,
+    //obtenerSuperheroesMayoresDe30Controller, 
+    agregarSuperHeroesController,// modificarSuperHeroesporIdController,
+    
+    
     modificarSuperHeroesController,
     modificar1SuperHeroesController,
-    update
+    eliminarSuperHeroesController,
+    
 } from '../controllers/superheroesController.mjs';
 
 //Express-Validator
@@ -23,10 +24,15 @@ import { validationHandler } from '../validaciones/errorMiddleware.js'
 const router = express.Router();
 
 router.get('/heroes', obtenerTodosLosSuperheroesController);
+router.get('/heroes/agregar', (req, res) => {
+    res.render('superHeroesDelMundo/addSuperHero'); // sin .ejs
+});
 router.get('/heroes/:id', obtenerSuperheroePorIdController);
 router.put('/heroes/modificar/:id', modificar1SuperHeroesController);
 router.post('/heroes/nuevo/agregarheroes', agregarSuperHeroesController);
 router.put('/heroes/modificar-id/:id', modificarSuperHeroesController);
+router.delete('/heroes/eliminar/id/:id', eliminarSuperHeroesController);
+
 /*router.get('/heroes', obtenerTodosLosSuperheroesController);
 router.get('/heroes/buscar-id/:id', obtenerSuperheroePorIdController);
 router.get('/heroes/buscar/:atributo/:valor', buscarSuperheroesPorAtributoController);

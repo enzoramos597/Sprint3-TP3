@@ -16,7 +16,7 @@
                 <th>Edad</th>
                 <th>Planeta de Origen</th>
                 <th>Debilidad</th>
-                <th>Poderes</th>
+                <!--<th>Poderes</th>-->
                 <th>Aliados</th>
                 <th>Enemigos</th>
                 <th>Creador</th>
@@ -29,18 +29,39 @@
                     <td> <%= heroe.Edad %></td>
                     <td> <%= heroe["Planeta de Origen"] %></td>
                     <td> <%= heroe.Debilidad %></td>
-                    <td> <%= heroe.Poderes %></td>
+                    <!--<td> <%= heroe.Poderes %></td>-->
                     <td> <%= heroe.Aliados %></td>
                     <td> <%= heroe.Enemigos %></td>
                     <td> <%= heroe["Creador"] %></td>
-                    <td> <button onclick="editar('<%= heroe.id %>')">Editar</button></td>
+                    <td> <button onclick="agregar()">Agregar</button><button onclick="editar('<%= heroe.id %>')">Editar</button> | <button onclick="eliminar('<%= heroe.id %>')">Eliminar</button></td>
                 </tr>
             <% }) %>
            
         </table>
     <script>
+        function agregar() {
+            window.location.href = '/api/heroes/agregar';
+        }
+
         function editar(id){
-            window.location.href = '/api/heroes/' + id
+            window.location.href = '/api/heroes/' + id;
+        }
+
+        function eliminar(id){
+            const requestOptions = {
+                method:'delete',               
+            }
+            fetch('/api/heroes/eliminar/id/' + id, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    if(data.result == 'success'){
+                        window.location.href = '/api/heroes'
+                    }
+                    else{
+                        alert("Surgio un Error al Eliminar el Super Heroe")
+                    }
+                })
         }
     </script>
     

@@ -93,6 +93,7 @@ class SuperHeroRepository extends IRepository {
     }
 
     async eliminarPorId(id) {
+        console.log('ver el Repository id', id);
         return await superHero.findByIdAndDelete(id);
     }
 

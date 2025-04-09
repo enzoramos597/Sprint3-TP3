@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Agregar el SuperHeroe</h1>
+    <div>
+        Nombre del Super Heroe: <input id="nombreSuperHeroe" value=""> <br> <br>
+        Nombre Real: <input id="nombreReal" value=""> <br> <br>
+        Edad: <input id="edad" value="" > <br><br>
+        Planeta de Origen: <input id="planetaOrigen" value=""> <br><br>
+        Debilidad: <input id="debilidad" value=""> <br><br>
+        Poderes: <input id="poderes" value=""> <br><br>
+        Aliados: <input id="aliados" value=""> <br><br>
+        Enemigos: <input id="enemigos" value=""> <br><br>
+        Creador: <input id="creador" value=""><br><br><br>  
+        <button onclick="Guardar()">Guardar</button>
+        <button onclick="window.location = '/api/heroes'">Cancelar</button>     
+    </div>
+    <script>
+        function Guardar(){
+        //console.log('Guardar ID:', id);
+            const requestOptions = {
+                method:'post',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ 
+                nombreSuperHeroe: document.getElementById('nombreSuperHeroe').value,    
+                nombreReal: document.getElementById('nombreReal').value, 
+                edad: document.getElementById('edad').value,                 
+                planetaOrigen: document.getElementById('planetaOrigen').value,
+                debilidad: document.getElementById('debilidad').value,
+                poderes: document.getElementById('poderes').value.split(','),
+                aliados: document.getElementById('aliados').value.split(','),
+                enemigos: document.getElementById('enemigos').value.split(','),
+                creador: document.getElementById('creador').value,                
+            })            
+            }
+            fetch('/api/heroes/nuevo/agregarheroes', requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    if(data.result == 'success'){
+                        window.location.href = '/api/heroes'
+                    }
+                    else{
+                        alert("Surgio un Error al actualizar la información")
+                    }
+                })
+        }
+    </script>
+       
+</body>
+</html>
