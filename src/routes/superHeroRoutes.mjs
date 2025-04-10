@@ -29,7 +29,7 @@ router.get('/heroes/agregar', (req, res) => {
 });
 router.get('/heroes/:id', obtenerSuperheroePorIdController);
 router.put('/heroes/modificar/:id', modificar1SuperHeroesController);
-router.post('/heroes/nuevo/agregarheroes', agregarSuperHeroesController);
+router.post('/heroes/nuevo/agregarheroes', sHeroesValidationRules(), validationHandler, agregarSuperHeroesController);
 router.put('/heroes/modificar-id/:id', modificarSuperHeroesController);
 router.delete('/heroes/eliminar/id/:id', eliminarSuperHeroesController);
 

@@ -15,6 +15,7 @@ connectDB();
 //Motores de Plantilla EJS
 app.set('views', './views');
 app.set('view engine', 'ejs');
+app.use(express.urlencoded({extended:true}));
 
 //Configuración de rutas
 app.use('/api', router);
